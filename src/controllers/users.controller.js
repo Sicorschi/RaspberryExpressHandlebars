@@ -1,9 +1,13 @@
 const pool = require('../database/database');
 
 async function getAllUsers(req, res) {
-    res.json({
-        message: 'Users'
-    })
+    pool.query('SELECT * FROM users').then(users => {
+        res.render('users/list', {users})
+    }).catch(err => {
+        res.json({
+            message: err.message
+        });
+    });
 }
 
 async function createNewUser(req, res) {
@@ -18,10 +22,7 @@ async function createUser(req, res) {
         fullname
     };
     pool.query('INSERT INTO users set ?', [newUser]).then(user => {
-        res.json({
-            message: 'form data created',
-            data: user.insertId
-        })
+        res.redirect('/users');
     }).catch(err => {
         res.json({
             message: err.message

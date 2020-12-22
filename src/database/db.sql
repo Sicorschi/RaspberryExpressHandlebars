@@ -9,6 +9,9 @@ ALTER TABLE users
     add primary key (id);
 
 ALTER TABLE users
+    add created_at timestamp not null default current_timestamp;
+
+ALTER TABLE users
     modify id int(11) not null AUTO_INCREMENT, AUTO_INCREMENT = 1;
 
 CREATE TABLE links(
