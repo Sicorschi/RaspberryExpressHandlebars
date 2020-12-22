@@ -16,15 +16,26 @@
                         {{timeago created_at}}
                     </p>
                     <div class="actions-buttons">
-                        <a href="http://" class="btn btn-danger m-4">
+                        <a href="/users/delete/{{id}}" class="btn btn-danger m-4">
                             Delete
                         </a>
-                        <a href="http://" class="btn btn-secondary m-4">
+                        <a href="/users/edit/{{id}}" class="btn btn-secondary m-4">
                             Edit
                         </a>
                     </div>
                 </div>
             </div>
+            {{else}}
+                <div class="col-md-8 mx-auto">
+                    <div class="card card-body text-center">
+                        <p>
+                            There are no users to list
+                        </p>
+                        <a href="/users/add">
+                            Add one
+                        </a>
+                    </div>
+                </div>
         {{/each}}
     </div>
 </div>

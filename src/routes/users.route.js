@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getAllUsers, createNewUser, createUser } = require('../controllers/users.controller');
+const { getAllUsers, createNewUser, createUser, deleteUser, editUser, editSelectedUser } = require('../controllers/users.controller');
 
 
 // middleware that is specific to this router
@@ -9,14 +9,13 @@ router.use(function timeLog (req, res, next) {
   next()
 })
 
-// define the home page route
+
 router.get('/', getAllUsers)
 router.get('/add', createNewUser)
 router.post('/add', createUser)
+router.get('/delete/:id', deleteUser)
+router.get('/edit/:id', editUser)
+router.post('/edit/:id', editSelectedUser)
 
-// define the about route
-router.get('/about', function (req, res) {
-  res.send('About users')
-})
 
 module.exports = router
