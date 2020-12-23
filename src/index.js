@@ -1,5 +1,7 @@
 const express = require('express');
 const usersRoutes = require('./routes/users.route');
+const linksRoutes = require('./routes/links.route');
+const homeRoutes = require('./routes/home.route'); 
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
@@ -35,7 +37,9 @@ app.use((req, res, next) => {
 
 
 // Routes
+app.use('/', homeRoutes);
 app.use('/users', usersRoutes);
+app.use('/links', linksRoutes);
 
 
 // Static files

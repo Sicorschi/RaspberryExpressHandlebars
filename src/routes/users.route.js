@@ -5,9 +5,11 @@ const { getAllUsers, createNewUser, createUser, deleteUser, editUser, editSelect
 
 // middleware that is specific to this router
 router.use(function timeLog (req, res, next) {
-  console.log('Time: ', Date.now())
+  console.log('Users routes:');
+  const date = new Date().getFullYear();
+  console.log('Time: ', date);
   next()
-})
+});
 
 
 router.get('/', getAllUsers)

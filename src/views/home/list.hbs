@@ -1,0 +1,86 @@
+<div class="container p-4">
+    <div class="row m-4">
+        {{#each links}}
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <h3 class="card-title text-uppercase m-4">
+                        {{ title }}
+                    </h3>
+                    <a href="{{url}}" target="blank">
+                        Click here
+                    </a>
+                    <h3 class="card-title m-4">
+                        {{ description }}
+                    </h3>
+                     <p>
+                        {{timeago created_at}}
+                    </p>
+                    <div class="actions-buttons">
+                        <a href="/links/delete/{{id}}" class="btn btn-danger m-4">
+                            Delete
+                        </a>
+                        <a href="/links/edit/{{id}}" class="btn btn-secondary m-4">
+                            Edit
+                        </a>
+                           <a href="/links/add" class="btn btn-primary m-4">
+                            Add
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+                <div class="col-md-8 mx-auto">
+                    <div class="card card-body text-center">
+                        <p>
+                            There are no links to list
+                        </p>
+                        <a href="/links/add">
+                            Add one
+                        </a>
+                    </div>
+                </div>
+        {{/each}}
+    </div>
+    <div class="row m-4">
+        {{#each users}}
+            <div class="col-md-4">
+                <div class="card text-center">
+                    <h3 class="card-title text-uppercase m-4">
+                        {{ username }}
+                    </h3>
+                    <h3 class="card-title text-uppercase m-4">
+                        {{ password }}
+                    </h3>
+                    <h3 class="card-title text-uppercase m-4">
+                        {{ fullname }}
+                    </h3>
+                     <p>
+                        {{timeago created_at}}
+                    </p>
+                    <div class="actions-buttons">
+                        <a href="/users/delete/{{id}}" class="btn btn-danger m-4">
+                            Delete
+                        </a>
+                        <a href="/users/edit/{{id}}" class="btn btn-secondary m-4">
+                            Edit
+                        </a>
+                         <a href="/users/add" class="btn btn-primary m-4">
+                            Add
+                        </a>
+                    </div>
+                </div>
+            </div>
+            {{else}}
+                <div class="col-md-8 mx-auto">
+                    <div class="card card-body text-center">
+                        <p>
+                            There are no users to list
+                        </p>
+                        <a href="/users/add">
+                            Add one
+                        </a>
+                    </div>
+                </div>
+        {{/each}}
+    </div>
+</div>
