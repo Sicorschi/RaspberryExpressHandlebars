@@ -22,7 +22,7 @@ async function createUser(req, res) {
         fullname
     };
     pool.query('INSERT INTO users set ?', [newUser]).then(() => {
-        req.flash('success', 'User was succesfully created!')
+        req.flash('success', 'Avatar was succesfully created!')
         res.redirect('/users');
     }).catch(err => {
         res.json({
@@ -35,7 +35,7 @@ async function deleteUser(req, res) {
     console.log(req.params.id);
     const { id } = req.params;
     pool.query('DELETE FROM users WHERE ID = ?', [id]).then(() => {
-        req.flash('success', 'User was successfully deleted!')
+        req.flash('success', 'Avatar was successfully deleted!')
         res.redirect('/users')
     })
 }
@@ -59,7 +59,7 @@ async function editSelectedUser(req, res) {
         username, password, fullname
     }
     pool.query('UPDATE users set ? WHERE id = ?', [userToEdit, id]).then(() => {
-        req.flash('success', 'User was succesfully updated!')
+        req.flash('success', 'Avatar was succesfully updated!')
         res.redirect('/users')
     }).catch(err => {
         res.json({
