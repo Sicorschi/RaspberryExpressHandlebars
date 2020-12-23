@@ -21,7 +21,8 @@ async function createUser(req, res) {
         password,
         fullname
     };
-    pool.query('INSERT INTO users set ?', [newUser]).then(user => {
+    pool.query('INSERT INTO users set ?', [newUser]).then(() => {
+        req.flash('success', 'User was succesfully created!')
         res.redirect('/users');
     }).catch(err => {
         res.json({
@@ -33,7 +34,8 @@ async function createUser(req, res) {
 async function deleteUser(req, res) {
     console.log(req.params.id);
     const { id } = req.params;
-    pool.query('DELETE FROM users WHERE ID = ?', [id]).then(response => {
+    pool.query('DELETE FROM users WHERE ID = ?', [id]).then(() => {
+        req.flash('success', 'User was successfully deleted!')
         res.redirect('/users')
     })
 }
@@ -56,9 +58,13 @@ async function editSelectedUser(req, res) {
     const userToEdit = {
         username, password, fullname
     }
-    pool.query('UPDATE users set ? WHERE id = ?', [userToEdit, id]).then(response => {
-        console.log(response);
+    pool.query('UPDATE users set ? WHERE id = ?', [userToEdit, id]).then(() => {
+        req.flash('success', 'User was succesfully updated!')
         res.redirect('/users')
+    }).catch(err => {
+        res.json({
+            message: err.message
+        })
     })
 }
 

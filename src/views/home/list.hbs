@@ -1,28 +1,28 @@
 <div class="container p-4">
     <div class="row m-4">
         {{#each links}}
-            <div class="col-md-4">
-                <div class="card text-center">
-                    <h3 class="card-title text-uppercase m-4">
+            <div class="card m-3" style="width: 18rem;">
+                <div class="card-body">
+                    <h5 class="card-title">
                         {{ title }}
-                    </h3>
-                    <a href="{{url}}" target="blank">
-                        Click here
+                    </h5>
+                    <a href="http://{{url}}" target="blank">
+                        Link here
                     </a>
-                    <h3 class="card-title m-4">
+                    <p class="card-text">
                         {{ description }}
-                    </h3>
-                     <p>
+                    </p>
+                    <p>
                         {{timeago created_at}}
                     </p>
-                    <div class="actions-buttons">
-                        <a href="/links/delete/{{id}}" class="btn btn-danger m-4">
+                    <div class="d-flex flex-column bd-highlight mb-3">
+                        <a href="/links/delete/{{id}}" class="btn btn-danger m-2">
                             Delete
                         </a>
-                        <a href="/links/edit/{{id}}" class="btn btn-secondary m-4">
+                        <a href="/links/edit/{{id}}" class="btn btn-secondary m-2">
                             Edit
                         </a>
-                           <a href="/links/add" class="btn btn-primary m-4">
+                        <a href="/links/add" class="btn btn-primary m-2">
                             Add
                         </a>
                     </div>
@@ -43,28 +43,28 @@
     </div>
     <div class="row m-4">
         {{#each users}}
-            <div class="col-md-4">
-                <div class="card text-center">
+         <div class="card m-3" style="width: 18rem;">
+                <div class="card-body">
                     <h3 class="card-title text-uppercase m-4">
                         {{ username }}
                     </h3>
-                    <h3 class="card-title text-uppercase m-4">
+                    <h5 class="card-title m-4">
                         {{ password }}
-                    </h3>
-                    <h3 class="card-title text-uppercase m-4">
+                    </h5>
+                    <h5 class="card-title text-uppercase m-4">
                         {{ fullname }}
-                    </h3>
+                    </h5>
                      <p>
                         {{timeago created_at}}
                     </p>
-                    <div class="actions-buttons">
-                        <a href="/users/delete/{{id}}" class="btn btn-danger m-4">
+                    <div class="d-flex flex-column bd-highlight mb-3">
+                        <a href="/users/delete/{{id}}" class="btn btn-danger m-2">
                             Delete
                         </a>
-                        <a href="/users/edit/{{id}}" class="btn btn-secondary m-4">
+                        <a href="/users/edit/{{id}}" class="btn btn-secondary m-2">
                             Edit
                         </a>
-                         <a href="/users/add" class="btn btn-primary m-4">
+                        <a href="/users/add" class="btn btn-primary m-2">
                             Add
                         </a>
                     </div>

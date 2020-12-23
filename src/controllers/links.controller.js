@@ -22,6 +22,7 @@ async function createLink(req, res) {
         description
     };
     pool.query('INSERT INTO links set ?', [newLink]).then(() => {
+        req.flash('success', 'Webpage was succesfully created!')
         res.redirect('/links');
     }).catch(err => {
         res.json({
@@ -34,6 +35,7 @@ async function deleteLink(req, res) {
     console.log(req.params.id);
     const { id } = req.params;
     pool.query('DELETE FROM links WHERE ID = ?', [id]).then(() => {
+        req.flash('success', 'Webpage was succesfully deleted!')
         res.redirect('/links')
     })
 }
@@ -56,7 +58,8 @@ async function editSelectedLink(req, res) {
     const linkToEdit = {
         title, url, description
     }
-    pool.query('UPDATE users set ? WHERE id = ?', [linkToEdit, id]).then(() => {
+    pool.query('UPDATE links set ? WHERE id = ?', [linkToEdit, id]).then(() => {
+        req.flash('success', 'Webpage was succesfully updated!')
         res.redirect('/links')
     })
 }
