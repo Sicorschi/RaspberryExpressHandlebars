@@ -2,6 +2,7 @@ const express = require('express');
 const usersRoutes = require('./routes/users.route');
 const linksRoutes = require('./routes/links.route');
 const homeRoutes = require('./routes/home.route'); 
+const authRoutes = require('./routes/auth.route');
 const morgan = require('morgan');
 const exphbs = require('express-handlebars');
 const path = require('path');
@@ -10,11 +11,13 @@ const flash = require('connect-flash');
 const session = require('express-session')
 const MySqlStore = require('express-mysql-session');
 const { database } = require('./database/keys')
+const passport = require('passport');
 
 
 
 // inicio
 const app = express();
+require('./lib/passport');
 
 
 // Settings
@@ -44,6 +47,8 @@ app.use((req, res, next) => {
     next();
 })
 app.use(flash())
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Global middleware:
 app.use((req, res, next) => {
@@ -55,6 +60,7 @@ app.use((req, res, next) => {
 app.use('/', homeRoutes);
 app.use('/users', usersRoutes);
 app.use('/links', linksRoutes);
+app.use('/auth', authRoutes);
 
 
 
