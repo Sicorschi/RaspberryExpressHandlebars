@@ -10,7 +10,7 @@ function signinForm(req, res) {
 
 async function signin(req, res, next) {
     passport.authenticate('local.signin', {
-        successRedirect: '/',
+        successRedirect: '/home',
         failureRedirect: '/auth/signin',
         failureFlash: true
     })(req, res, next)

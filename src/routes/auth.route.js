@@ -5,7 +5,7 @@ const passport = require('passport');
 
 router.get('/signup', signupForm)
 router.post('/signup', passport.authenticate('local.signup', {
-    successRedirect: '/',
+    successRedirect: '/home',
     failureRedirect: '/auth/signup',
     failureFlash: true
 }))
