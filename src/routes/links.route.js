@@ -1,5 +1,6 @@
 const express = require('express')
 const router = express.Router()
+const { isLoggedIn } = require('../lib/auth');
 const { getAllLinks, createNewLink, createLink, deleteLink, editLink, editSelectedLink } = require('../controllers/links.controller');
 
 
@@ -12,12 +13,12 @@ router.use(function timeLog (req, res, next) {
 });
 
 
-router.get('/', getAllLinks)
-router.get('/add', createNewLink)
-router.post('/add', createLink)
-router.get('/delete/:id', deleteLink)
-router.get('/edit/:id', editLink)
-router.post('/edit/:id', editSelectedLink)
+router.get('/', isLoggedIn, getAllLinks)
+router.get('/add', isLoggedIn, createNewLink)
+router.post('/add', isLoggedIn, createLink)
+router.get('/delete/:id', isLoggedIn, deleteLink)
+router.get('/edit/:id', isLoggedIn, editLink)
+router.post('/edit/:id', isLoggedIn, editSelectedLink)
 
 
 module.exports = router

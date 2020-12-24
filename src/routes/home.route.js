@@ -1,18 +1,10 @@
 const express = require('express')
-const router = express.Router()
-const { getDashboard } = require('../controllers/home.controller');
+const router = express.Router();
+const { isLoggedIn } = require('../lib/auth');
+const { getDashboard, getIndex } = require('../controllers/home.controller');
 
-
-
-// middleware that is specific to this router
-router.use(function timeLog (req, res, next) {
-    console.log('Home routes:');
-    const date = new Date().getFullYear();
-    console.log('Time: ', date);
-    next()
-});
-
-router.get('/', getDashboard)
+router.get('/home', isLoggedIn, getDashboard)
+router.get('/', getIndex)
 
 
 module.exports = router

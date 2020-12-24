@@ -16,9 +16,15 @@ async function signin(req, res, next) {
     })(req, res, next)
 }
 
+async function logoutForm(req, res, next) {
+    req.logOut();
+    res.redirect('/auth/signin')
+}
+
 
 module.exports = {
     signupForm,
     signinForm,
-    signin
+    signin,
+    logoutForm
 }
