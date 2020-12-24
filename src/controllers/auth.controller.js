@@ -1,23 +1,24 @@
 const passport = require('passport');
 
-function signup(req, res) {
+function signupForm(req, res) {
     res.render('auth/signup')
 }
 
-// async function signupUser(req, res) {
-//     console.log(req.body);
-//     passport.authenticate('local.signup', {
-//         successRedirect: '/',
-//         failureRedirect: '/auth/signup',
-//         failureFlash: true
-//     })
-//     res.json({
-//         message: 'Recibido'
-//     })
-// }
+function signinForm(req, res) {
+    res.render('auth/signin')
+}
+
+async function signin(req, res, next) {
+    passport.authenticate('local.signin', {
+        successRedirect: '/',
+        failureRedirect: '/auth/signin',
+        failureFlash: true
+    })(req, res, next)
+}
 
 
 module.exports = {
-    signup,
-    // signupUser
+    signupForm,
+    signinForm,
+    signin
 }
