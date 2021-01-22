@@ -12,7 +12,7 @@ passport.use('local.signin', new LocalStrategy({
     if (appUser.length > 0) {
         const validPassword = await helpers.login(password, appUser[0].password);
         if (validPassword) {
-            done(null, appUser[0], req.flash('welcome_message', 'Welcome ' + appUser[0].username))
+            done(null, appUser[0].id, req.flash('welcome_message', 'Welcome ' + appUser[0].username))
         } else {
             done(null, false, req.flash('message', 'Incorrect password'))
         }
@@ -37,6 +37,7 @@ passport.use('local.signup', new LocalStrategy({
     newAppUser.password = await helpers.encryptPassword(password)
     pool.query('INSERT INTO appUsers SET ?', [newAppUser]).then(result => {
         newAppUser.id = result.insertId;
+        console.log('signup method usuario salvado:', newAppUser);
         return done(null, newAppUser);
     }).catch(err => {
         return done(err, false);

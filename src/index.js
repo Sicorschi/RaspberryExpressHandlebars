@@ -1,17 +1,22 @@
 const express = require('express');
+
 const usersRoutes = require('./routes/users.route');
 const linksRoutes = require('./routes/links.route');
 const homeRoutes = require('./routes/home.route'); 
 const authRoutes = require('./routes/auth.route');
-const morgan = require('morgan');
-const exphbs = require('express-handlebars');
-const path = require('path');
-const pool = require('./database/database');
+
 const flash = require('connect-flash');
 const session = require('express-session')
 const MySqlStore = require('express-mysql-session');
-const { database } = require('./database/keys')
+const morgan = require('morgan');
+
+const exphbs = require('express-handlebars');
+const path = require('path');
 const passport = require('passport');
+
+const pool = require('./database/database');
+const { database } = require('./database/keys')
+
 
 
 
@@ -42,10 +47,6 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }))
 app.use(morgan('dev'));
-app.use((req, res, next) => {
-    console.log(req.body);
-    next();
-})
 app.use(flash())
 app.use(passport.initialize())
 app.use(passport.session())

@@ -35,9 +35,9 @@ CREATE TABLE links(
     title varchar(150) not null,
     url varchar(255) not null,
     description text,
-    user_id int(11),
+    appuser_id int(11),
     created_at timestamp not null default current_timestamp,
-    constraint fk_user foreign key (user_id) references users(id)
+    constraint fk_apuser foreign key (appuser_id) references appUsers(id)
 );
 ALTER TABLE links
     add primary key (id);
